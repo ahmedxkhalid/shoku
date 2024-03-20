@@ -1,30 +1,57 @@
-# React + TypeScript + Vite
+# Shouk Pet Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules and Tailwind Css
 
-Currently, two official plugins are available:
+# TailwindCss config
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install tailwindcss by using tailwind-cli or by using npm/npx command line
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+```bash
+npm i -D tailwindcss
+npx tailwindcss init --all
+```
+Or install tailwind-cli global to use it any time and use the same config
+```bash
+npm i -g tailwindcss
+tailwindcss init --all
+```
+So now we have `tailwind.config.js` now we need to add content wich the path of index at the all type of fill tailwind will use
 
 ```js
+/** @type {import('tailwindcss').Config} */
 export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+  content: [ 
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx,html}",
+  ],
+  presets: [],
+  darkMode: 'media', // or 'class'
+  theme: {
+    accentColor: ({ theme }) => (
+      {
+      ...theme('colors'),
+      auto: 'auto',
+    }
+    ),
+  }  
 }
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Postcss Config
+
+```js
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },}
+```
+
+So after we make config for the website we should add `@tilwinds` decoration in css to loadit in css make this congif in your `index.css`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+<center><h1>Happy Hack :) </h1></center>
